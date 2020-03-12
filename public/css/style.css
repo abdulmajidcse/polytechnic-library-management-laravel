@@ -1,0 +1,110 @@
+html{
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: #00746B #28A745;
+}
+a{
+	text-decoration: none !important;
+}
+/*header*/
+h2.brandtxt{
+	color: #00746B;
+	text-transform: uppercase;
+}
+/*end of header*/
+
+
+/*home page*/
+div.card1{
+	border-left: 4px solid #4ccc4c !important;
+}
+div.card2{
+	border-left: 4px solid #1313ad !important;
+}
+div.card3{
+	border-left: 4px solid #28A745 !important;
+}
+div.card4{
+	border-left: 4px solid #00746B !important;
+}
+div.card5{
+	border-left: 4px solid #FFC107 !important;
+}
+div.card6{
+	border-left: 4px solid #89A745 !important;
+}
+/*end of home page*/
+/*main navbar*/
+nav.mainnavbar{
+	background: #00746B;
+}
+div.login{
+	background: #00746B;
+}
+ul.mainnavul li{
+	padding: 3px;
+}
+ul.mainnavul li.active{
+	background: #073936;
+}
+ul.mainnavul li a{
+	color: white;
+}
+ul.mainnavul li:hover{
+	background: #00625c;
+}
+ul.mainnavul div.dropdown-menu{
+	background: #00746B;
+	top: 96%;
+}
+ul.mainnavul li:hover div.dropdown-menu{
+	display: block;
+
+}
+/*end of main navbar*/
+/*main content*/
+div.loginWrapper{
+	min-height: 68vh;
+}
+div.contentWrapper{
+	min-height: 75vh;
+}
+/*end of main content*/
+
+/*post*/
+.page-link{
+	display: inline-block !important;
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+}
+/*end of post*/
+
+
+/*footer*/
+footer{
+	background: #00746B;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+/*end of footer*/
+
+/*back to top*/
+button#backtotop{
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	font-size: 25px;
+}
+/*end of back to top*/
+
+
+/*image modal*/
+img#imgmodal:hover{
+	cursor: pointer;
+}
