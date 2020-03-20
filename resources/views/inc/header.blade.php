@@ -17,20 +17,20 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!--bootstrap css link-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
      <!--fontawesome css link-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/fontawesome/css/all.css ')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/all.css ')}}">
     <!--w3 css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/w3.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/w3.css') }}">
     <!--toaster alert css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/toastr.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.min.css') }}">
     <!--sweet alert css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/sweetalert.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.css') }}">
     <!--custom css link-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
 
     <!--brand icon-->
-    <link rel="shortcut icon" type="image/ico" href="{{ asset('public/images/brand.ico')}}">
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('images/brand.ico')}}">
  
 </head>
 <body>

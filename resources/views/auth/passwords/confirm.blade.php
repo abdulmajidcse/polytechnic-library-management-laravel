@@ -15,7 +15,7 @@
                     <div class="card-body">
                         {{ __('Please confirm your password before continuing.') }}
 
-                        <form method="POST" action="{{ route('password.confirm') }}">
+                        <form method="POST" action="{{ route('password.confirm') }}" class="was-validated">
                             @csrf
 
                             <div class="form-group row">

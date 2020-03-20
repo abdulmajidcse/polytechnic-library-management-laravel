@@ -20,7 +20,7 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <form method="POST" action="{{ url('/password/update') }}">
+                        <form method="POST" action="{{ url('/password/update') }}" class="was-validated">
                             @csrf
 
                             <div class="form-group row">

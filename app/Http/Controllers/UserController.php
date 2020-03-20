@@ -100,7 +100,7 @@ class UserController extends Controller
             $image_name = uniqid();
             $ext = strtolower($image->getClientOriginalExtension());
             $image_full_name = $image_name . "." . $ext;
-            $upload_path = "public/images/";
+            $upload_path = "images/";
             $image_url = $upload_path.$image_full_name;
             
             if (!empty(Auth::user()->image)) {

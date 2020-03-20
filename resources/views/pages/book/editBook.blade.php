@@ -24,7 +24,7 @@
                     @endif
 
                     <div class="card-body">
-                        <form method="POST" action="{{ URL::to('/book/update/'.$book->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ URL::to('/book/update/'.$book->id) }}" enctype="multipart/form-data" class="was-validated">
                             @csrf
 
                             <div class="form-group row">

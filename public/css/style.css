@@ -1,7 +1,7 @@
 html{
-	scroll-behavior: smooth;
-	scrollbar-width: thin;
-	scrollbar-color: #00746B #28A745;
+	scroll-behavior: smooth !important;
+	scrollbar-width: thin !important;
+	scrollbar-color: gray green !important;
 }
 a{
 	text-decoration: none !important;
@@ -64,10 +64,10 @@ ul.mainnavul li:hover div.dropdown-menu{
 /*end of main navbar*/
 /*main content*/
 div.loginWrapper{
-	min-height: 68vh;
+	min-height: 68vh !important;
 }
 div.contentWrapper{
-	min-height: 75vh;
+	min-height: 75vh !important;
 }
 /*end of main content*/
 
@@ -85,10 +85,6 @@ div.contentWrapper{
 /*footer*/
 footer{
 	background: #00746B;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
 }
 /*end of footer*/
 

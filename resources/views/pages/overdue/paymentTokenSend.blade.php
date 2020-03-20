@@ -13,7 +13,7 @@
                     <div class="card-header text-info">Payment submit</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('/send-token') }}">
+                        <form method="POST" action="{{ url('/send-token') }}" class="was-validated">
                             @csrf
 
                             <div class="form-group row">

@@ -13,7 +13,7 @@
                     <div class="card-header text-info">Payment verify</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('/overude_fine/payment-verification') }}">
+                        <form method="POST" action="{{ url('/overude_fine/payment-verification') }}" class="was-validated">
                             @csrf
 
                             <div class="form-group row">

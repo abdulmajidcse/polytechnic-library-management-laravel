@@ -2,7 +2,7 @@
     <!--footer-->
     <footer class="p-2">
         <div class="container-fluid text-center mt-1">
-            <p class="text-white h5 font-weight-bold m-auto p-3">&copy; @php echo date("Y"); @endphp KPI Library</p>
+            <p class="text-white h5 font-weight-bold m-auto p-3">&copy; {{ date("Y") }} {{ 'KPI Library' }}</p>
         </div>
     </footer><!--end of footer-->
 
@@ -29,15 +29,15 @@
 
 
 <!--jquery and bootstrap js script-->
-<script type="text/javascript" src="{{ asset('public/js/jquery-3.4.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 <!--bootstrap js-->
-<script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!--toaster alert js-->
-<script type="text/javascript" src="{{ asset('public/js/toastr.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/toastr.min.js') }}"></script>
 <!--sweet alert js-->
-<script type="text/javascript" src="{{ asset('public/js/sweetalert.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
 <!--custom js script-->
-<script type="text/javascript" src="{{ asset('public/js/style.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/style.js') }}"></script>
 
 <script type="text/javascript">
 	//form submit message**********

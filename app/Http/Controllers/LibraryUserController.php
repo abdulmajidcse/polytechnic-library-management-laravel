@@ -97,7 +97,7 @@ class LibraryUserController extends Controller
             $image_name = uniqid();
             $ext = strtolower($data['image']->getClientOriginalExtension());
             $image_full_name = $image_name . "." . $ext;
-            $upload_path = "public/images/";
+            $upload_path = "images/";
             $image_url = $upload_path.$image_full_name;
 
             $student->name = $data['name'];
@@ -169,7 +169,7 @@ class LibraryUserController extends Controller
             $image_name = uniqid();
             $ext = strtolower($data['image']->getClientOriginalExtension());
             $image_full_name = $image_name . "." . $ext;
-            $upload_path = "public/images/";
+            $upload_path = "images/";
             $image_url = $upload_path.$image_full_name;
 
             $staff->name = $data['name'];
@@ -279,7 +279,7 @@ class LibraryUserController extends Controller
             $image_name = uniqid();
             $ext = strtolower($data['image']->getClientOriginalExtension());
             $image_full_name = $image_name . "." . $ext;
-            $upload_path = "public/images/";
+            $upload_path = "images/";
             $image_url = $upload_path.$image_full_name;            
 
             $student->name = $data['name'];
@@ -358,7 +358,7 @@ class LibraryUserController extends Controller
             $image_name = uniqid();
             $ext = strtolower($data['image']->getClientOriginalExtension());
             $image_full_name = $image_name . "." . $ext;
-            $upload_path = "public/images/";
+            $upload_path = "images/";
             $image_url = $upload_path.$image_full_name;
 
             $staff->name = $data['name'];
