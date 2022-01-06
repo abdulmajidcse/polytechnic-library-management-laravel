@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\overDueFine;
-use App\libraryUser;
+use App\Models\LibraryUser;
+use App\Models\OverDueFine;
+use App\Models\PaymentList;
 use Illuminate\Http\Request;
 use App\Notifications\PaymentVerify;
-use Notification;
-use App\paymentList;
+use Illuminate\Support\Facades\Notification;
 
 class OverDueFineController extends Controller
 {
@@ -28,7 +28,7 @@ class OverDueFineController extends Controller
      */
     public function index()
     {
-        $overdueList = overDueFine::all();
+        $overdueList = OverDueFine::all();
         return view('pages.overdue.overdueFineList', compact('overdueList'));
     }
 
@@ -36,8 +36,8 @@ class OverDueFineController extends Controller
     * over due fine payment submit
     */
     public function paymentTokenSend(){
-        $libraryUser = libraryUser::where('person', 'staff')->orderBy('pims_no', 'asc')->get('pims_no');
-        $overDueFine = overDueFine::get('payment');
+        $libraryUser = LibraryUser::where('person', 'staff')->orderBy('pims_no', 'asc')->get('pims_no');
+        $overDueFine = OverDueFine::get('payment');
         if (count($overDueFine) > 0) {
             return view('pages.overdue.paymentTokenSend', compact('libraryUser', 'overDueFine'));
         } else {
@@ -59,8 +59,8 @@ class OverDueFineController extends Controller
             'payment' => 'required|min:1',
         ]);
 
-        $libraryUser = libraryUser::where('pims_no', $request->pims_no)->first();
-        $overdue = overDueFine::all();
+        $libraryUser = LibraryUser::where('pims_no', $request->pims_no)->first();
+        $overdue = OverDueFine::all();
         if (count($overdue) > 0) {
             //summation of payment
             $payments = 0;
@@ -74,7 +74,7 @@ class OverDueFineController extends Controller
                 $verifyCode = uniqid();
                 Notification::route('mail', $request->email)->notify(new PaymentVerify($libraryUser, $request->email, $payments, $verifyCode));
                 //store information in database who's sent a verification code
-                $paymentList = paymentList::where('status', 0)->first();
+                $paymentList = PaymentList::where('status', 0)->first();
                 if (!is_null($paymentList)) {
                     $paymentList->name = $libraryUser->name;
                     $paymentList->pims_no = $libraryUser->pims_no;
@@ -83,7 +83,7 @@ class OverDueFineController extends Controller
                     $paymentList->verify_token = $verifyCode;
                     $paymentList->save();
                 } else {
-                    $paymentList = new paymentList();
+                    $paymentList = new PaymentList();
                     $paymentList->name = $libraryUser->name;
                     $paymentList->pims_no = $libraryUser->pims_no;
                     $paymentList->email = $request->email;
@@ -118,7 +118,7 @@ class OverDueFineController extends Controller
 
     //payment verify form
     public function paymentVerify(){
-        $paymentUser = paymentList::where('status', 0)->first();
+        $paymentUser = PaymentList::where('status', 0)->first();
         if (!is_null($paymentUser) == true) {
             return view('pages.overdue.paymentVerify', compact('paymentUser'));
         } else {
@@ -136,7 +136,7 @@ class OverDueFineController extends Controller
             'verification' => 'required',
         ]);
 
-        $verify = paymentList::where('verify_token', $request->verification)->first();
+        $verify = PaymentList::where('verify_token', $request->verification)->first();
         if (!is_null($verify) == true) {
            //if true, update some column in paymentLists table
            $verify->submit_date = date('Y-m-d');
@@ -144,7 +144,7 @@ class OverDueFineController extends Controller
            $verify->status = 1;
            $verify->save();
            //delete all data from over_due_fines table
-           $overdue = overDueFine::all();
+           $overdue = OverDueFine::all();
            foreach ($overdue as $del) {
                $del->delete();
            }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Borrow;
+use App\Models\LibraryUser;
+use App\Models\OverDueFine;
 use Illuminate\Http\Request;
-use App\borrow;
-use App\book;
-use App\libraryUser;
-use App\overDueFine;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ReturnController extends Controller
 {
@@ -28,7 +28,7 @@ class ReturnController extends Controller
      */
     public function index()
     {
-        $returned = borrow::all()->where('status', 1);
+        $returned = Borrow::all()->where('status', 1);
         return view('pages.return_book.allReturnBook', compact('returned'));
     }
 
@@ -44,13 +44,13 @@ class ReturnController extends Controller
     //
     public function returnBook(Request $request, $id)
     {
-        $returned = borrow::find($id);
+        $returned = Borrow::find($id);
         $returned->returned_date = date('Y-m-d');
         $returned->over_due_fine = $request->fine;
         $returned->status = 1;
         $returned->save();
 
-        $book = book::find($returned->book_id);
+        $book = Book::find($returned->book_id);
         $copy = $book->copy;
         $copy += 1;
         $book->copy = $copy;
@@ -58,7 +58,7 @@ class ReturnController extends Controller
 
         //overdue fine added in overdue fine list
         if ($request->fine > 0) {
-            $user = libraryUser::find($returned->library_user_id);
+            $user = LibraryUser::find($returned->library_user_id);
             if ($user->person == 'student') {
                 $roll_pims_no = $user->roll_no;
                 $overdue = new overDueFine();
@@ -106,7 +106,7 @@ class ReturnController extends Controller
     {
         $checkReturn = DB::select('select * from borrows where id = :id && status = :status', ['id' => $id, 'status' => 1]);
         if ($checkReturn) {
-            $returned = borrow::find($id);
+            $returned = Borrow::find($id);
             return view('pages.return_book.detailsReturnBook', compact('returned'));
         } else {
             $notification = [
@@ -150,7 +150,7 @@ class ReturnController extends Controller
     {
         $checkReturn = DB::select('select * from borrows where id = :id && status = :status', ['id' => $id, 'status' => 1]);
         if ($checkReturn) {
-            $returned = borrow::find($id);
+            $returned = Borrow::find($id);
             $returned->delete();
             $notification = [
                 'message' => 'Successfully return book deleted!',

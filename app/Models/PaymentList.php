@@ -1,11 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class paymentList extends Model
+class PaymentList extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'name', 'pims_no', 'email', 'submit_date', 'payment', 'verify_token', 'status'
     ];

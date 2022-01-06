@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\borrow;
-use App\libraryUser;
-use App\category;
-use App\book;
+use App\Models\Book;
+use App\Models\Borrow;
+use App\Models\Category;
+use App\Models\LibraryUser;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class BorrowController extends Controller
 {
@@ -28,7 +28,7 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrow = borrow::all()->where('status', 0);
+        $borrow = Borrow::all()->where('status', 0);
         return view('pages.borrow_book.allBorrowBook', compact('borrow'));
     }
 
@@ -39,7 +39,7 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        $category = category::all();
+        $category = Category::all();
         return view('pages.borrow_book.addBorrowBook', compact('category'));
     }
 
@@ -49,7 +49,7 @@ class BorrowController extends Controller
     public function select_user($person)
     { 
         if ($person == "student" || $person == "staff") {
-            $user = libraryUser::all()->where('person', $person);
+            $user = LibraryUser::all()->where('person', $person);
             $count = count($user);
             if ($person == "student" && $count > 0) {
                 echo "<div class='form-group row'>
@@ -83,7 +83,7 @@ class BorrowController extends Controller
     public function select_book($category_id)
     { 
         if ($category_id != 'Select a category') {
-            $book = book::all()->where('category_id', $category_id)->where('copy', '>', 0);
+            $book = Book::all()->where('category_id', $category_id)->where('copy', '>', 0);
             $count = count($book);
             if ($count > 0) {
                 echo "<div class='form-group row'>
@@ -123,7 +123,7 @@ class BorrowController extends Controller
                 'alert-type' => 'error'
             ];
         } else {
-            $borrow = new borrow();
+            $borrow = new Borrow();
             $borrow->library_user_id = $request->library_user_id;
             $borrow->category_id = $request->category_id;
             $borrow->book_id = $request->book_id;
@@ -131,7 +131,7 @@ class BorrowController extends Controller
             $borrow->return_date = $request->return_date;
             $borrow->save();
 
-            $book = book::find($request->book_id);
+            $book = Book::find($request->book_id);
             $copy = $book->copy;
             $copy -= 1;
             $book->copy = $copy;
@@ -156,7 +156,7 @@ class BorrowController extends Controller
     {
         $checkBorrow = DB::select('select * from borrows where id = :id && status = :status', ['id' => $id, 'status' => 0]);
         if ($checkBorrow) {
-            $borrow = borrow::find($id);
+            $borrow = Borrow::find($id);
             return view('pages.borrow_book.detailsBorrowBook', compact('borrow'));
         } else {
             $notification = [

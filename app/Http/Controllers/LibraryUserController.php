@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\libraryUser;
-use App\borrow;
+use App\Models\LibraryUser;
+use App\Models\Borrow;
 use Illuminate\Http\Request;
 
 class LibraryUserController extends Controller
@@ -25,7 +25,7 @@ class LibraryUserController extends Controller
      */
     public function index_student()
     {
-        $student = libraryUser::all()->where('person', 'student');
+        $student = LibraryUser::all()->where('person', 'student');
         return view('pages.library_user.allStudent', compact('student'));
     }
 
@@ -36,7 +36,7 @@ class LibraryUserController extends Controller
      */
     public function index_staff()
     {
-        $staff = libraryUser::all()->where('person', 'staff');
+        $staff = LibraryUser::all()->where('person', 'staff');
         return view('pages.library_user.allStaff', compact('staff'));
     }
 
@@ -80,7 +80,7 @@ class LibraryUserController extends Controller
             'image' => 'mimes:jpg,jpeg,png|max:4000'
         ]);
 
-        $student = new libraryUser();
+        $student = new LibraryUser();
 
         $data = array();
         $data['name'] = $request->name;
@@ -156,7 +156,7 @@ class LibraryUserController extends Controller
             'image' => 'mimes:jpg,jpeg,png|max:4000'
         ]);
 
-        $staff = new libraryUser();
+        $staff = new LibraryUser();
 
         $data = array();
         $data['name'] = $request->name;
@@ -210,7 +210,7 @@ class LibraryUserController extends Controller
      * @param  \App\libraryUser  $libraryUser
      * @return \Illuminate\Http\Response
      */
-    public function show(libraryUser $libraryUser)
+    public function show(LibraryUser $libraryUser)
     {
         //
     }
@@ -223,7 +223,7 @@ class LibraryUserController extends Controller
      */
     public function edit_student($id)
     {
-        $student = libraryUser::find($id);
+        $student = LibraryUser::find($id);
 
         return view('pages.library_user.editStudent', compact('student'));
     }
@@ -236,7 +236,7 @@ class LibraryUserController extends Controller
      */
     public function edit_staff($id)
     {
-        $staff = libraryUser::find($id);
+        $staff = LibraryUser::find($id);
 
         return view('pages.library_user.editStaff', compact('staff'));
     }
@@ -262,7 +262,7 @@ class LibraryUserController extends Controller
             'image' => 'mimes:jpg,jpeg,png|max:4000'
         ]);
 
-        $student = libraryUser::find($id);
+        $student = LibraryUser::find($id);
 
         $data = array();
         $data['name'] = $request->name;
@@ -345,7 +345,7 @@ class LibraryUserController extends Controller
             'image' => 'mimes:jpg,jpeg,png|max:4000'
         ]);
 
-        $staff = libraryUser::find($id);
+        $staff = LibraryUser::find($id);
 
         $data = array();
         $data['name'] = $request->name;
@@ -407,7 +407,7 @@ class LibraryUserController extends Controller
      */
     public function destroy($id)
     {
-        $libraryUser = libraryUser::find($id);
+        $libraryUser = LibraryUser::find($id);
         if ($libraryUser) {
             $borrow = borrow::all()->where('library_user_id', $id);
             if (count($borrow) > 0) {

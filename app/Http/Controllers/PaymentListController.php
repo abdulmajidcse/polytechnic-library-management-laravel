@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\paymentList;
+use App\Models\PaymentList;
 
 class PaymentListController extends Controller
 {
@@ -24,7 +23,7 @@ class PaymentListController extends Controller
      */
     public function index()
     {
-        $paymentList = paymentList::where('status', 1)->get();
+        $paymentList = PaymentList::where('status', 1)->get();
         return view('pages.payment_list.allPaymentList', compact('paymentList'));
     }
 
@@ -36,7 +35,7 @@ class PaymentListController extends Controller
      */
     public function show($id)
     {
-        $paymentList = paymentList::find($id);
+        $paymentList = PaymentList::find($id);
         if (!is_null($paymentList) == true) {
             return view('pages.payment_list.detailsPayment', compact('paymentList'));
         } else {
@@ -56,7 +55,7 @@ class PaymentListController extends Controller
      */
     public function destroy($id)
     {
-        $paymentList = paymentList::find($id);
+        $paymentList = PaymentList::find($id);
         if (!is_null($paymentList) == true) {
             $paymentList->delete();
             $notification = [

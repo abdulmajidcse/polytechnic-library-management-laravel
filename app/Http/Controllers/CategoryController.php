@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\book;
+use App\Models\Book;
 
 class CategoryController extends Controller
 {
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = category::all();
+        $category = Category::all();
         return view('pages.category.allCategory', compact('category'));
     }
 
@@ -51,7 +51,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories|max:25|min:2'
         ]);
 
-        $category = new category();
+        $category = new Category();
         $category->name = $request->name;
         $category->save();
         $notification = [
@@ -67,7 +67,7 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show(Category $category)
     {
         //
     }
@@ -80,7 +80,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = category::find($id);
+        $category = Category::find($id);
         return view('pages.category.editCategory', compact('category'));
     }
 
@@ -97,7 +97,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories|max:25|min:2'
         ]);
 
-        $category = category::find($id);
+        $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
 
@@ -117,9 +117,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = category::find($id);
+        $category = Category::find($id);
         if ($category) {
-            $book = book::all()->where('category_id', $id);
+            $book = Book::all()->where('category_id', $id);
             if (count($book) > 0) {
                 $notification = [
                     'message' => 'Can\'t delete this category! Because this cateogry has some books.',

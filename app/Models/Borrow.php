@@ -1,11 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class borrow extends Model
+class Borrow extends Model
 {
+    use HasFactory;
+    
 	/**
      * The attributes that are mass assignable.
      *
@@ -17,15 +20,15 @@ class borrow extends Model
 
     //relationship
     public function libraryUser(){
-    	return $this->belongsTo(libraryUser::class);
+    	return $this->belongsTo(LibraryUser::class);
     }
 
     public function book(){
-    	return $this->belongsTo(book::class);
+    	return $this->belongsTo(Book::class);
     }
 
     public function category(){
-        return $this->belongsTo(category::class);
+        return $this->belongsTo(Category::class);
     }
 
     

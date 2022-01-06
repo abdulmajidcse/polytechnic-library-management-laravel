@@ -1,16 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class book extends Model
+class Book extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'category_id', 'name', 'copy', 'author', 'publisher', 'image',
     ];
 
     public function category(){
-    	return $this->belongsTo(category::class);
+    	return $this->belongsTo(Category::class);
     }
 }

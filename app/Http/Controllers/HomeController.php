@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\category;
-use App\book;
-use App\libraryUser;
-use App\borrow;
-use App\overDueFine;
+use App\Models\Category;
+use App\Models\Book;
+use App\Models\LibraryUser;
+use App\Models\Borrow;
+use App\Models\OverDueFine;
 
 class HomeController extends Controller
 {
@@ -29,15 +28,15 @@ class HomeController extends Controller
     public function index()
     {
         //library overview from database
-        $category = category::all();
-        $typeOfBooks = book::all();
+        $category = Category::all();
+        $typeOfBooks = Book::all();
         $numberOfBooks = 0;
         foreach ($typeOfBooks as $value) {
             $numberOfBooks += $value['copy'];
         }
-        $userStaff = libraryUser::all()->where('person', 'staff');
-        $userStudent = libraryUser::all()->where('person', 'student');
-        $borrow = borrow::all()->where('status', 0);
+        $userStaff = LibraryUser::all()->where('person', 'staff');
+        $userStudent = LibraryUser::all()->where('person', 'student');
+        $borrow = Borrow::all()->where('status', 0);
         //return date over
         $today = strtotime(date('Y-m-d'));
         $returnDateOver = 0;
@@ -47,8 +46,8 @@ class HomeController extends Controller
                 $returnDateOver += 1;
             }
         }
-        $returned = borrow::all()->where('status', 1);
-        $overDue = overDueFine::all();
+        $returned = Borrow::all()->where('status', 1);
+        $overDue = OverDueFine::all();
         $overDueFine = 0;
         foreach ($overDue as $value) {
             $overDueFine += $value['payment'];

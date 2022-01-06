@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\book;
-use App\category;
+use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\borrow;
+use App\Models\Borrow;
 
 class BookController extends Controller
 {
@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book = book::all();
+        $book = Book::all();
         return view('pages.book.allBook', compact('book'));
     }
 
@@ -37,7 +37,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $category = category::all();
+        $category = Category::all();
         return view('pages.book.addBook', compact('category'));
     }
 
@@ -58,7 +58,7 @@ class BookController extends Controller
             'image' => 'mimes:jpg,jpeg,png|max:4000'
         ]);
 
-        $book = new book();
+        $book = new Book();
 
         $category_id = $request->category_id;
         $name = $request->name;
@@ -126,8 +126,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $book = book::find($id);
-        $category = category::all();
+        $book = Book::find($id);
+        $category = Category::all();
 
         return view('pages.book.editBook', compact('book', 'category'));
     }
@@ -150,7 +150,7 @@ class BookController extends Controller
             'image' => 'mimes:jpg,jpeg,png|max:4000'
         ]);
 
-        $book = book::find($id);
+        $book = Book::find($id);
 
         $category_id = $request->category_id;
         $name = $request->name;
@@ -211,9 +211,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $book = book::find($id);
+        $book = Book::find($id);
         if ($book) {
-            $borrow = borrow::all()->where('book_id', $id);
+            $borrow = Borrow::all()->where('book_id', $id);
             if (count($borrow) > 0) {
                 $notification = [
                     'message' => 'Can\'t delete this book! Because this book has in the borrow list or return list.',
