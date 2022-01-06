@@ -2,7 +2,7 @@
     <!--footer-->
     <footer class="p-2">
         <div class="container-fluid text-center mt-1">
-            <p class="text-white h5 font-weight-bold m-auto p-3">&copy; {{ date("Y") }} {{ 'KPI Library' }}</p>
+            <p class="text-white h5 font-weight-bold m-auto p-3">Copyright &copy; {{ date("Y") }} {{ config('app.name') }}</p>
         </div>
     </footer><!--end of footer-->
 

@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-      @yield('title', 'KPI Library')
+      @yield('title', config('app.name'))
     </title>
 
 
@@ -44,7 +44,7 @@
                 <div class="container-fluid login text-center p-3">
                     <a class="navbar-brand text-light font-weight-bold" href="{{ url('/') }}">
                     <i class="fas fa-book-reader h4"></i>
-                    <span>{{ __('KPI Library') }}</span>
+                    <span>{{ config('app.name') }}</span>
                   </a>
                 </div>
             </header><!--end of header-->
@@ -56,7 +56,7 @@
               <div class="container-fluid p-2">
                   <a class="navbar-brand text-light font-weight-bold" href="{{ url('/') }}">
                     <i class="fas fa-book-reader h4"></i>
-                    <span>{{ __('KPI Library') }}</span>
+                    <span>{{ config('app.name') }}</span>
                   </a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="text-light"><i class="fas fa-bars"></i> Menu</span>
